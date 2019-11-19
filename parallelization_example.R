@@ -1,7 +1,8 @@
 gc()	# unnecessary but sometimes helps clean up ghost threads from failed runs	
 set.seed(Sys.time())	# not reproducible, but also prevents idiosyncratic results
 
-library("tidyverse")
+library("dplyr")
+library("readr")
 library("foreach")
 library("doParallel")		# there are other back-ends you can use
 
@@ -14,7 +15,7 @@ mat_list <- list()
 
 # variables for the Markov processes -- ONCE YOU HAVE THE CODE RUNNING AND UNDERSTAND IT, TRY MAKING THESE NUMBERS BIGGER TO TAKE ADVANTAGE OF THE PARALLELIZATION
 mat_total <- 10			# number of Markov processes
-dimension <- 100		# size of each Markov process = dimension of each matrix
+dimension <- 10		# size of each Markov process = dimension of each matrix
 
 # generate random Markov processes
 for (mat in 1:mat_total) {
