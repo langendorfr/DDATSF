@@ -14,6 +14,7 @@ echo "hello"
 sleep 2
 echo "goodbye"
 
+
 Rscript parallelization_example.R
 
 echo "Done!"
