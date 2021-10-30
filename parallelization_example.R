@@ -48,7 +48,7 @@ stability
 
 # assemble them from the files you wrote to disk
 output_files <- list.files(pattern = "stationary_distribution")
-output_files = output_files[substr(output_files, 25, nchar(output_files)-4) %>% as.numeric %>% order]	# reorder files numerically
+output_files <- output_files[substr(output_files, 25, nchar(output_files)-4) %>% as.numeric %>% order]	# reorder files numerically
 
 # iterate through each stationary distribution file and add them to the pre-allocated matrix 
 stability_assembled <- matrix(NA, nrow = mat_total, ncol = dimension)
