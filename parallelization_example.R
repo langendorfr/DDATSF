@@ -20,7 +20,7 @@ dimension <- 10     # size of each Markov process = dimension of each matrix
 # generate random Markov processes
 for (mat in 1:mat_total) {
     mat_temp <- matrix(sample(c(0, 0.1, 0.1, 2), dimension^2, replace = TRUE), nrow = dimension, ncol = dimension)
-    mat_list[[mat]] = sweep(mat_temp, MARGIN = 1, FUN = "/", STATS = rowSums(mat_temp))		# row-normalize to unity turning a random matrix into a Markov process
+    mat_list[[mat]] <- sweep(mat_temp, MARGIN = 1, FUN = "/", STATS = rowSums(mat_temp))		# row-normalize to unity turning a random matrix into a Markov process
 }
 
 # save the loop to a variable so what it returns isn't just printed to the screen
@@ -31,7 +31,7 @@ stability <- foreach (mat = 1:mat_total, .combine = rbind, .packages = c("tibble
     print(mat)
 
     # row-normalized matrices are Markov processes which converge on their stationary distribution (if it exists) when raised to successive powers, usually in less than 100 steps
-    stationary_dist <-(mat_list[[mat]] %^% 1e2)[1,]
+    stationary_dist <- (mat_list[[mat]] %^% 1e2)[1,]
 
     # writing to disk is the safest way to run things in parallel
     write.table(stationary_dist, file = paste0("stationary_distribution_", mat, ".csv"), sep = ",", row.names = FALSE, col.names = FALSE)
